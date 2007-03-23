@@ -1,0 +1,12 @@
+To Build Livedvd:
+
+apt-get install mkisofs cdrecord
+
+copy mksquashfs to:
+cp mksquashfs /usr/sbin
+
+copy build_livecd to same level as the "source" directory:
+cp build_livecd ../
+
+./build_livecd
+

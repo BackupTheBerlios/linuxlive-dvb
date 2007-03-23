@@ -1,0 +1,30 @@
+#!/bin/bash
+rm -rf target
+rm debian-live.iso
+mkdir target
+cp -a source/boot target/
+mkdir target/files
+rm -rf source/var/tmp/*
+rm -rf source/var/run/*
+rm -rf source/var/lock/*
+rm -rf source/tmp/*
+rm -f source/etc/mtab
+touch source/etc/mtab
+mksquashfs source/ target/files/source.img
+cd target
+mkisofs -R -b boot/isolinux/isolinux.bin -c boot/isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o ../media_center.iso .
+cd ..
+clear
+echo "********************************************************************"
+echo "*  Sie koennen Ihre LiveCD jetzt mit                               *"
+echo "*                                                                  *"
+echo "*  	qemu -cdrom debian-live.iso -m 192 -boot d -user-net     *"
+echo "*                                                                  *" 
+echo "*  testen oder gleich mit                                          *"
+echo "*                                                                  *"
+echo "*  	cdrecord -v speed=16 dev=/dev/hdd -data debian-live.iso  *"
+echo "*                                                                  *"
+echo "*  brennen. Wobei Sie /dev/hdd an Ihr System anpassen muessen.     *"
+echo "*                                                                  *"
+echo "*  Viel Spass wuenscht Ihnen tux-networks.ch - Bojovic Dragan      *"
+echo "********************************************************************"

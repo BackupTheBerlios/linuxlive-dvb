@@ -1,0 +1,10 @@
+To build fglrx drivers for Radeon video cards for hdtv.
+
+cd /usr/src/modules-fglrx/fglrx/
+
+module-assistant prepare
+
+module-assistant a-i fglrx
+
+
+Restart Xwindows
